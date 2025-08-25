@@ -1,0 +1,54 @@
+/* styles.css - Calculator UI
+   Mobile-first, responsive, accessible.
+   Header comment: styles for calculator layout, display, keypad, and theme support.
+*/
+:root{
+  --bg: #f3f4f6;
+  --panel: #ffffff;
+  --muted: #6b7280;
+  --accent: #0ea5e9;
+  --primary: #0f172a;
+  --radius: 14px;
+  --gap: 10px;
+  --shadow: 0 6px 18px rgba(16,24,40,0.06);
+  --precision: 6;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:var(--bg);color:var(--primary);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.container{max-width:520px;margin:0 auto;padding:16px}
+
+/* Header */
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.title{margin:0;font-size:1.1rem}
+
+/* Calculator */
+.calculator{margin-top:16px;background:var(--panel);border-radius:18px;padding:14px;box-shadow:var(--shadow)}
+
+/* Display - two lines */
+.display{background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));padding:12px;border-radius:12px;display:flex;flex-direction:column;gap:6px;min-height:84px}
+.expression{font-size:1rem;color:var(--muted);min-height:22px;overflow:auto}
+.result{font-size:2rem;font-weight:600;text-align:right;word-break:break-all}
+
+/* Keypad grid */
+.kbd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.button{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:16px;border-radius:10px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;user-select:none}
+.button.operator{background:linear-gradient(180deg, rgba(14,165,233,0.08), rgba(14,165,233,0.04));border:1px solid rgba(14,165,233,0.12)}
+.button.equal{background:var(--accent);color:white;border:none}
+.button:active{transform:translateY(1px)}
+.button:focus{outline:3px solid rgba(14,165,233,0.18)}
+
+/* Responsive tweaks */
+@media(min-width:700px){ .container{max-width:720px} .kbd-grid{gap:12px} .result{font-size:2.4rem} }
+
+/* Dark theme */
+:root[data-theme="dark"]{
+  --bg:#0b1020;--panel:#081026;--muted:#9aa4b2;--accent:#60a5fa;--primary:#e6eef8;
+}
+
+.icon-btn{background:transparent;border:none;padding:8px;border-radius:8px;cursor:pointer}
+.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0)}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important;animation:none!important}
+}
